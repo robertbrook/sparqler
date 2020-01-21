@@ -1,17 +1,37 @@
 <!DOCTYPE html>
 <html>
-  <head>
-  <link href="https://unpkg.com/@triply/yasgui/build/yasgui.min.css" rel="stylesheet" type="text/css" />
-  <script src="https://unpkg.com/@triply/yasgui/build/yasgui.min.js"></script>
-</head>
-<body>
-  <div id="yasgui"></div>
-  <script>
-    
-    const yasgui = new Yasgui(document.getElementById("yasgui"), {
-  		requestConfig: { endpoint: "https://api.parliament.uk/sparql" },a
-  		}
-    );
-  </script>
-</body>
+	<head>
+		<title>UK Parliament SPARQL</title>
+		<link href='yasgui.min.css' rel='stylesheet' type='text/css'/>
+		<script src='https://cdn.jsdelivr.net/npm/yasgui@2.7.29/dist/yasgui.min.js'></script>
+		<style>
+			.yasgui .endpointText {
+				display:none !important;
+			}
+		</style>
+		
+	</head>
+	<body>
+		<div id="gui"></div>
+		<script>
+			var config = {
+				api: {
+					urlShortener: "https://api.parliament.uk/s/create"
+				},
+				yasqe: {
+					value: "PREFIX : <https://id.parliament.uk/schema/>\nPREFIX id: <https://id.parliament.uk/>\n\nSELECT *\nWHERE {\n  ?s ?p ?o .\n}\nLIMIT 10",
+					sparql: {
+						endpoint: "https://api.parliament.uk/sparql",
+						acceptHeaderGraph: "application/rdf+json"
+					}
+				},
+				yasr: {
+					useGoogleCharts: true
+				}
+			};
+
+			YASGUI.YASQE.Autocompleters.prefixes.fetchFrom = "https://api.parliament.uk/sparql/prefixes";
+			YASGUI(document.getElementById("gui"), config);
+		</script>
+	</body>
 </html>
