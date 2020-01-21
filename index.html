@@ -1,32 +1,10 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>UK Parliament SPARQL</title>
-		  <link href="https://unpkg.com/@triply/yasgui/build/yasgui.min.css" rel="stylesheet" type="text/css" />
+<head>
+  <link href="https://unpkg.com/@triply/yasgui/build/yasgui.min.css" rel="stylesheet" type="text/css" />
   <script src="https://unpkg.com/@triply/yasgui/build/yasgui.min.js"></script>
-
-	</head>
-	<body>
-		<div id="gui"></div>
-		<script>
-			var config = {
-				api: {
-					urlShortener: "https://api.parliament.uk/s/create"
-				},
-				yasqe: {
-					value: "PREFIX : <https://id.parliament.uk/schema/>\nPREFIX id: <https://id.parliament.uk/>\n\nSELECT *\nWHERE {\n  ?s ?p ?o .\n}\nLIMIT 10",
-					sparql: {
-						endpoint: "https://api.parliament.uk/sparql",
-						acceptHeaderGraph: "application/rdf+json"
-					}
-				},
-				yasr: {
-					useGoogleCharts: false
-				}
-			};
-
-			YASGUI.YASQE.Autocompleters.prefixes.fetchFrom = "https://api.parliament.uk/sparql/prefixes";
-			YASGUI(document.getElementById("gui"), config);
-		</script>
-	</body>
-</html>
+</head>
+<body>
+  <div id="yasgui"></div>
+  <script>
+    const yasgui = new Yasgui(document.getElementById("yasgui"));
+  </script>
+</body>
